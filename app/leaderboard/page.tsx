@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/button";
-import { HighestScore, UsernameAtom } from "@/lib/store";
+import { HighestScore, UserIdAtom, UsernameAtom } from "@/lib/store";
 import { atom, useAtomValue } from "jotai";
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
@@ -12,7 +12,7 @@ function Player({
   username,
   score,
 }: {
-  no: number;
+  no: string;
   score: number;
   username: string;
 }) {
@@ -33,9 +33,9 @@ function Player({
 }
 
 const SELF_RANK_ATOM = atom((get, { signal }) =>
-  fetch(`/api/GetUserRank?username=${get(UsernameAtom)}`, {
+  fetch(`/api/GetUserRank?userid=${get(UserIdAtom)}`, {
     signal,
-  }).then<number>((e) => e.json())
+  }).then<string>((e) => e.text())
 );
 
 function Self() {
@@ -43,9 +43,14 @@ function Self() {
   const username = useAtomValue(UsernameAtom);
 
   const rank = useAtomValue(SELF_RANK_ATOM);
-  // const rank = 800;
 
-  return <Player username={username || "You"} no={rank} score={hiscore} />;
+  return (
+    <Player
+      username={username || "You"}
+      no={isNaN(parseInt(rank)) ? "Not Rated" : rank}
+      score={hiscore}
+    />
+  );
 }
 
 const LEADERBOARD_ATOM = atom((get, { signal }) =>
@@ -58,7 +63,12 @@ function PlayerList() {
   let list = useAtomValue(LEADERBOARD_ATOM);
 
   return list.map(({ username, score }, index) => (
-    <Player username={username} no={index + 1} score={score} key={index} />
+    <Player
+      username={username}
+      no={(index + 1).toString()}
+      score={score}
+      key={index}
+    />
   ));
 }
 
@@ -75,7 +85,6 @@ export default function Leaderboard() {
       </div>
       <div className="mt-6 flex w-full justify-evenly items-center h-10 space-x-4">
         <div className="w-[30px]">No.</div>
-        {/* <div className="]"></div> */}
         <div className="flex-[2]">Player Name</div>
         <div>Score</div>
       </div>

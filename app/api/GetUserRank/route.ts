@@ -5,11 +5,11 @@ export async function GET(request: NextRequest) {
   try {
     const { db } = await connectToDatabase();
 
-    const username = request.nextUrl.searchParams.get('username');
+    const userid = request.nextUrl.searchParams.get('userid');
 
     const usersCollection = db.collection('GAME_USERS_PERF');
 
-    const user = await usersCollection.findOne({ username });
+    const user = await usersCollection.findOne({ userId: userid });
 
   if (!user) {
     return new Response("user not found", {status: 404});
