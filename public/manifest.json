@@ -6,6 +6,7 @@
   "display": "standalone",
   "background_color": "#333333",
   "theme_color": "#333333",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/pixel-game-icon-tr 192x192.png",

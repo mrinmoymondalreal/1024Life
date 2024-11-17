@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
+import withPWA from 'next-pwa';
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   async headers() {
     return [
       {
@@ -39,6 +40,16 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  reactStrictMode: true, 
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV !== "development"
+  }
 };
 
-export default nextConfig;
+export default withPWA({
+  dest: "public",         // destination directory for the PWA files
+  disable: process.env.NODE_ENV === "development",        // disable PWA in the development environment
+  register: true,         // register the PWA service worker
+  skipWaiting: true,      // skip waiting for service worker activation
+})(nextConfig);

@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   authors: [
     { name: "Mrinmoy Mondal", url: "https://github.com/mrinmoymondalreal" },
   ],
+  manifest: "/manifest.json",
+  keywords: ["nextjs", "next14", "pwa", "next-pwa", "1024life", "next-game"],
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#333333" }],
+  viewport:
+    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
+  icons: [
+    { rel: "apple-touch-icon", url: "/pixel-game-icon-tr 192x192.png" },
+    { rel: "icon", url: "/pixel-game-icon-tr 192x192.png" },
+  ],
 };
 
 export default function RootLayout({
