@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* font-family: Arial; */
+}
+
+#game-board {
+  font-size: 7.5vmin;
+  display: grid;
+  width: fit-content;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+  grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+  background-color: #ccc;
+  gap: var(--cell-gap);
+  border-radius: 1vmin;
+  padding: var(--cell-gap);
+  position: relative;
+  animation: show 0.3s;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.cell {
+  background-color: #aaa;
+  border-radius: 1vmin;
+
+  animation: show 0.3s;
+}
+
+.tile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 1vmin;
+  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  font-weight: bold;
+  background-color: hsl(150, 50%, var(--background-lightness));
+  color: hsl(200, 25%, var(--text-lightness));
+  animation: show 200ms ease-in-out;
+  transition: 100ms ease-in-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}
+
+.animate-float {
+  animation: float 0.8s;
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+    margin-top: 0;
+    transform: scale(1);
+  }
+}

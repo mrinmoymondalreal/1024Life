@@ -1,0 +1,21 @@
+{
+  "name": "1024Life",
+  "short_name": "1024Life",
+  "description": "A 1024 mind game",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#333333",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "/pixel-game-icon-tr 192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/pixel-game-icon-tr 512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
