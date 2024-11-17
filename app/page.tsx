@@ -19,7 +19,7 @@ export default function Home() {
           className="object-cover rounded-full"
         />
       </div>
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-6 *:w-fit">
         <Link href="/game">
           <Button className="*:inline-block flex justify-center items-center gap-x-3">
             <span>
