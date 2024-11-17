@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
 
 
-    return new Response(rank + 1, { status: 200 });
+    return new Response((rank + 1).toString(), { status: 200 });
   } catch (error) {
     console.error('Error fetching top scores:', error);
     return new Response(
